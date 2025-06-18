@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dijital Menü</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #000;
+      color: white;
+      margin: 0;
+      padding: 20px;
+    }
+
+    header img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto 100px;
+      pointer-events: none;
+    }
+
+    .menu-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .category-card {
+      width: 100%;
+      max-width: 400px;
+      height: 200px;
+      background-color: #111;
+      border: 1px solid #444;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 40px;
+      text-align: center;
+      transition: transform 0.3s;
+      padding: 10px;
+      user-select: none;
+      touch-action: manipulation;
+    }
+
+    .category-card:hover {
+      transform: scale(1.05);
+      background-color: #222;
+    }
+
+    .submenu {
+      display: none;
+      margin-top: 30px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .submenu.active {
+      display: block;
+    }
+
+    .submenu h2 {
+      border-bottom: 1px solid #999;
+      padding-bottom: 5px;
+    }
+
+    .submenu ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .submenu li {
+      display: flex;
+      justify-content: space-between;
+      padding: 4px 0;
+      border-bottom: 1px solid #333;
+    }
+
+    .back-button {
+      margin-bottom: 20px;
+      cursor: pointer;
+      color: #00aaff;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      color: #888;
+      font-size: 12px;
+      margin-top: 50px;
+    }
+
+    @media (max-width: 600px) {
+      .category-card {
+        height: 130px;
+        font-size: 28px;
+      }
+
+      .submenu {
+        padding: 0 10px;
+      }
+
+      .submenu li {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="ls.logo.jpg" alt="Logo">
+  </header>
+
+  <div class="menu-container" id="main-menu">
+    <div class="category-card" onclick="showSubmenu('coffee')">Dünya Kahveleri</div>
+    <div class="category-card" onclick="showSubmenu('snacks')">Ara Sıcaklar</div>
+    <div class="category-card" onclick="showSubmenu('desserts')">Tatlılar</div>
+    <div class="category-card" onclick="showSubmenu('cold-drinks')">Soğuk İçecekler</div>
+    <div class="category-card" onclick="showSubmenu('hot-drinks')">Sıcak İçecekler</div>
+  </div>
+
+  <!-- ALT MENÜLER -->
+  <div class="submenu" id="coffee">
+    <div class="back-button" onclick="goBack()">← Geri</div>
+    <h2>Dünya Kahveleri</h2>
+    <ul>
+      <li><span>Last Summer Coffee</span><span>110₺</span></li>
+      <li><span>Espresso</span><span>65₺</span></li>
+      <li><span>Double Espresso</span><span>75₺</span></li>
+      <li><span>Latte</span><span>100₺</span></li>
+      <li><span>Ice Latte</span><span>100₺</span></li>
+      <li><span>Americano</span><span>100₺</span></li>
+      <li><span>Ice Americano</span><span>90₺</span></li>
+      <li><span>Mocha</span><span>100₺</span></li>
+      <li><span>Ice Mocha</span><span>100₺</span></li>
+      <li><span>Macchiato</span><span>100₺</span></li>
+      <li><span>Ice Macchiato</span><span>100₺</span></li>
+      <li><span>Cappuccino</span><span>100₺</span></li>
+      <li><span>Cold Brew</span><span>100₺</span></li>
+    </ul>
+  </div>
+
+  <div class="submenu" id="snacks">
+    <div class="back-button" onclick="goBack()">← Geri</div>
+    <h2>Ara Sıcaklar</h2>
+    <ul>
+      <li><span>Karışık Tost</span><span>80₺</span></li>
+      <li><span>Kaşarlı Tost</span><span>70₺</span></li>
+      <li><span>Köfte Ekmek</span><span>200₺</span></li>
+      <li><span>Izgara Köfte</span><span>200₺</span></li>
+      <li><span>Sucuk Ekmek</span><span>200₺</span></li>
+      <li><span>Izgara Sucuk</span><span>200₺</span></li>
+      <li><span>Patates Kızartması</span><span>50₺</span></li>
+      <li><span>Menemen</span><span>90₺</span></li>
+      <li><span>Sucuklu Yumurta</span><span>90₺</span></li>
+      <li><span>Mantı</span><span>200₺</span></li>
+    </ul>
+  </div>
+
+  <div class="submenu" id="desserts">
+    <div class="back-button" onclick="goBack()">← Geri</div>
+    <h2>Tatlılar</h2>
+    <ul>
+      <li><span>Spoonful</span><span>90₺</span></li>
+      <li><span>Trileçe</span><span>90₺</span></li>
+      <li><span>Tiramisu</span><span>90₺</span></li>
+      <li><span>Magnolia</span><span>90₺</span></li>
+    </ul>
+  </div>
+
+  <div class="submenu" id="cold-drinks">
+    <div class="back-button" onclick="goBack()">← Geri</div>
+    <h2>Soğuk İçecekler</h2>
+    <ul>
+      <li><span>Cool Lime</span><span>90₺</span></li>
+      <li><span>Last Summer Kokteyl</span><span>100₺</span></li>
+      <li><span>Su</span><span>10₺</span></li>
+      <li><span>Ayran</span><span>15₺</span></li>
+      <li><span>Kutu İçecekler</span><span>45₺</span></li>
+      <li><span>Redbull</span><span>75₺</span></li>
+      <li><span>Meyveli Sodalar</span><span>25₺</span></li>
+      <li><span>Sade Soda</span><span>20₺</span></li>
+    </ul>
+  </div>
+
+  <div class="submenu" id="hot-drinks">
+    <div class="back-button" onclick="goBack()">← Geri</div>
+    <h2>Sıcak İçecekler</h2>
+    <ul>
+      <li><span>Türk Kahvesi</span><span>50₺</span></li>
+      <li><span>Dibek Kahvesi</span><span>60₺</span></li>
+      <li><span>Çay</span><span>15₺</span></li>
+      <li><span>Fincan Çay</span><span>45₺</span></li>
+    </ul>
+  </div>
+
+
+
+  <script>
+    function showSubmenu(id) {
+      document.getElementById('main-menu').style.display = 'none';
+      document.querySelectorAll('.submenu').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    function goBack() {
+      document.getElementById('main-menu').style.display = 'flex';
+      document.querySelectorAll('.submenu').forEach(s => s.classList.remove('active'));
+    }
+  </script>
+
+</body>
+</html>
